@@ -41,6 +41,7 @@
         if (userGuess === computerGuess) {
             wins++;
             computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+            guessesLeft = 9;
           }
           // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
           var html =
