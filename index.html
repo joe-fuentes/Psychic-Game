@@ -12,10 +12,11 @@
   <div id="game">
     <p><strong>Welcome to...</strong></p>
     <p><h1><span><strong>The Psychic Game!</strong></span></h1></p>
-    <h3>Type any key to start the game</h3>    
+    <button id = "click-me">Click me to start the game</button>    
   </div>
 
   <script type="text/javascript">
+        // ... we trigger an alert.
     var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     // Creating variables to hold the number of wins, losses, and the number of allowable guesses left. They start at 0.
     var wins = 0;
@@ -24,18 +25,31 @@
       // Randomly chooses a choice from the options array. This is the Computer's guess.
       var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     // This function is run whenever the user presses a key.
+          // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
+      $("#click-me").on("click", function() {
+        // ... we trigger an alert.
+//        alert("I've been clicked!");
+          var html =
+            "<p><h1><strong>The Psychic Game</strong></h1></p>" + 
+            "<p>Guess what letter I'm thinking of</p>" +
+            "<p>Wins: " + wins + "</p>" +
+            "<p>Losses: " + losses + "</p>" +
+            "<p>Guesses Left: " + guessesLeft + "</p>" +
+            "<p> Computer picked revealed: " + computerGuess + "</p>";
+
+          // Set the inner HTML contents of the #game div to our html string
+          document.querySelector("#game").innerHTML = html;
+      });
       document.onkeyup = function(event) {
         // Determines which key was pressed.
-
         var userGuess = event.key;
 
         if (userGuess != computerGuess) {
-            losses++;
             guessesLeft--;
           }
         if (guessesLeft <= 0) {
-          wins = 0;
-          losses = 0;
+          losses++;
+          computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
           guessesLeft = 9;
         }
         if (userGuess === computerGuess) {
@@ -43,7 +57,6 @@
             computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
             guessesLeft = 9;
           }
-          // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
           var html =
             "<p><h1><strong>The Psychic Game</strong></h1></p>" + 
             "<p>Guess what letter I'm thinking of</p>" +
