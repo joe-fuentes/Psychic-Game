@@ -12,18 +12,12 @@
   <div id="game">
     <p><strong>Welcome to...</strong></p>
     <p><h1><span><strong>The Psychic Game!</strong></span></h1></p>
-    <h3 id="click-me">Type any key to start the game</h3>    
+    <h3>Type any key to start the game</h3>    
   </div>
 
   <script type="text/javascript">
-
-     $("#click-me").on("click", function() {
-        // ... we trigger an alert.
-        alert("I've been clicked!");
-      });
-    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
-/*    var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    // Creating variables to hold the number of wins, losses, and ties. They start at 0.
+    var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    // Creating variables to hold the number of wins, losses, and the number of allowable guesses left. They start at 0.
     var wins = 0;
     var losses = 0;
     var guessesLeft = 9;
@@ -35,15 +29,18 @@
 
         var userGuess = event.key;
 
-        // Reworked our code from last step to use "else if" instead of lots of if statements.
-        // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
-
-        if (userGuess === computerGuess) {
-            wins++;
-          }
         if (userGuess != computerGuess) {
             losses++;
             guessesLeft--;
+          }
+        if (guessesLeft <= 0) {
+          wins = 0;
+          losses = 0;
+          guessesLeft = 9;
+        }
+        if (userGuess === computerGuess) {
+            wins++;
+            computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
           }
           // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
           var html =
@@ -52,13 +49,11 @@
             "<p>Wins: " + wins + "</p>" +
             "<p>Losses: " + losses + "</p>" +
             "<p>Guesses Left: " + guessesLeft + "</p>" +
-            "<p> Your Guesses so far: " + userGuess + "</p>" +
             "<p> Computer picked revealed: " + computerGuess + "</p>";
 
           // Set the inner HTML contents of the #game div to our html string
           document.querySelector("#game").innerHTML = html;
       };
-//    }); */
   </script>
 
 </body>
