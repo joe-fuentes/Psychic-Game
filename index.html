@@ -9,6 +9,7 @@
 
 <body>
 
+  <div id="display"></div>
   <div id="game">
     <p><strong>Welcome to...</strong></p>
     <p><h1><span><strong>The Psychic Game!</strong></span></h1></p>
@@ -23,6 +24,7 @@
     var losses = 0;
     var guessesLeft = 9;
     var userGuess = "_";
+
       // Randomly chooses a choice from the options array. This is the Computer's guess.
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     // This function is run whenever the user presses a key.
@@ -62,7 +64,7 @@
           "<p>Wins: " + wins + "</p>" +
           "<p>Losses: " + losses + "</p>" +
           "<p>Guesses Left: " + guessesLeft + "</p>" +
-          "<p>Your guesses so far: " + userGuess + "</p>";
+          "<p>Your guesses so far: " + userGuess; 
 
         // Set the inner HTML contents of the #game div to our html string 
        document.querySelector("#game").innerHTML = html;
