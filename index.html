@@ -39,16 +39,19 @@
         guessesLeft = 9;
         userGuess = "";
         computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-      } 
-      if (userPick != computerGuess) {
+      } else {
         guessesLeft--;
-        userGuess+= userPick + ", ";
-      }
-      if (guessesLeft === 0) {
-        losses++;
-        guessesLeft = 9;
-        userGuess = "";
-        computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];        
+        if (userGuess === "") {
+          userGuess+= userPick;
+        } else {
+          userGuess+= ", " + userPick;
+        }
+        if (guessesLeft === 0) {
+          losses++;
+          guessesLeft = 9;
+          userGuess = "";
+          computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];        
+        }
       }
         // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
         var html =
